@@ -56,5 +56,8 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists("trips").dropTableIfExists("users");
+  return knex.schema
+    .dropTableIfExists("user_trips")
+    .dropTableIfExists("trips")
+    .dropTableIfExists("users");
 };

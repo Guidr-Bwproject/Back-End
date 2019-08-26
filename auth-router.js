@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const Users = require("./auth-model");
 
@@ -27,7 +28,8 @@ router.post("/login", (req, res) => {
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
-        res.status(200).json({ message: "Welcome" });
+        const token = getJwt(user);
+        res.status(200).json({ message: "Welcome, here is your JWT:", token });
       } else {
         res.status(401).json({ message: "Nice try." });
       }
@@ -36,5 +38,23 @@ router.post("/login", (req, res) => {
       res.status(500).json({ message: "There was an error logging in." });
     });
 });
+
+function getJwt(user) {
+  const payload = {
+    subject: user.id,
+    username: user.username,
+    jwtid: 1
+  };
+
+  const options = {
+    expiresIn: "8h"
+  };
+
+  const secret = {
+    jwtSecret: process.env.JWT_SECRET || "secret"
+  };
+
+  return jwt.sign(payload, secret.jwtSecret, options);
+}
 
 module.exports = router;

@@ -46,3 +46,7 @@ function addTrip(trip) {
       return findTripById(id);
     });
 }
+
+// function getUserTrips(id) {
+//   return db('trips as t').innerJoin('users as u', )
+// }

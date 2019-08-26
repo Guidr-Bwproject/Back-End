@@ -16,6 +16,21 @@ router.post("/register", (req, res) => {
     });
 });
 
-router.post("/login", (req, res) => {});
+router.post("/login", (req, res) => {
+  const { username } = req.body;
+
+  Users.findBy({ username })
+    .first()
+    .then(user => {
+      if (user) {
+        res.status(200).json({ message: "Welcome" });
+      } else {
+        res.status(401).json({ message: "Nice try." });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({ message: "There was an error logging in." });
+    });
+});
 
 module.exports = router;

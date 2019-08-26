@@ -1,6 +1,7 @@
 exports.up = function(knex) {
   return knex.schema
     .createTable("users", tbl => {
+      // check data
       tbl.increments();
       tbl.string("title", 255).notNullable();
       tbl.string("tagline", 255).notNullable();
@@ -32,6 +33,25 @@ exports.up = function(knex) {
       tbl.string("location", 255);
       tbl.integer("price");
       tbl.string("image");
+    })
+    .createTable("user_trips", tbl => {
+      tbl.increments();
+      tbl
+        .integer("user_id")
+        .unisgned()
+        .notNullable()
+        .references("id")
+        .inTable("users")
+        .onDelete("RESTRICT") // check
+        .onUpdate("CASCADE");
+      tbl
+        .integer("trip_id")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("trips")
+        .onDelete("RESTRICT") // check
+        .onUpdate("CASCADE");
     });
 };
 

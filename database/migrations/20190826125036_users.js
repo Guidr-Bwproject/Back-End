@@ -6,10 +6,8 @@ exports.up = function(knex) {
       tbl.string("title", 255).notNullable();
       tbl.string("tagline", 255).notNullable();
       tbl.integer("age").notNullable();
-      tbl
-        .timestamp("created_at")
-        .defaultTo(knex.raw("now()"))
-        .notNullable();
+      // tbl.timestamp("created_at");
+      // not sure how to implement
       tbl
         .string("username", 255)
         .unique()
@@ -38,7 +36,7 @@ exports.up = function(knex) {
       tbl.increments();
       tbl
         .integer("user_id")
-        .unisgned()
+        .unsigned()
         .notNullable()
         .references("id")
         .inTable("users")

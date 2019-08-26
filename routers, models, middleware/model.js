@@ -2,13 +2,20 @@ const db = require("../database/db-config");
 
 module.exports = {
   addUser,
-  findBy,
+  findUserBy,
   getTrips,
   addTrip
 };
 
-function findBy(filter) {
+// ========== USERS ==========
+function findUserBy(filter) {
   return db("users").where(filter);
+}
+
+function findUserById(id) {
+  return db("users")
+    .where({ id })
+    .first();
 }
 
 function addUser(user) {
@@ -16,12 +23,13 @@ function addUser(user) {
     .insert(user)
     .then(ids => {
       const [id] = ids;
-      return findById(id);
+      return findUserById(id);
     });
 }
 
-function findById(id) {
-  return db("users")
+// ========== TRIPS ==========
+function findTripById(id) {
+  return db("trips")
     .where({ id })
     .first();
 }
@@ -35,6 +43,6 @@ function addTrip(trip) {
     .insert(trip)
     .then(ids => {
       const [id] = ids;
-      return findById(id);
+      return findTripById(id);
     });
 }

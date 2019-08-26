@@ -2,7 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const Users = require("./auth-model");
+const Model = require("./model");
 
 router.post("/register", (req, res) => {
   const user = req.body;
@@ -10,7 +10,7 @@ router.post("/register", (req, res) => {
   user.password = hash;
   console.log(user.password);
 
-  Users.add(user)
+  Model.addUser(user)
     .then(user => {
       res.status(201).json(user);
     })
@@ -24,7 +24,7 @@ router.post("/register", (req, res) => {
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
 
-  Users.findBy({ username })
+  Model.findBy({ username })
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
@@ -45,11 +45,9 @@ function getJwt(user) {
     username: user.username,
     jwtid: 1
   };
-
   const options = {
     expiresIn: "8h"
   };
-
   const secret = {
     jwtSecret: process.env.JWT_SECRET || "secret"
   };
@@ -58,3 +56,13 @@ function getJwt(user) {
 }
 
 module.exports = router;
+
+// dummy data
+// {
+//   "title": "a title",
+//   "tagline": "a tagline",
+//   "age": 2,
+//   "username": "a 2212username",
+//   "password": "a password",
+//   "email": "an 2122email"
+// }

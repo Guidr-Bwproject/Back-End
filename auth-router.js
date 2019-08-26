@@ -1,9 +1,13 @@
 const router = require("express").Router();
+const bcrypt = require("bcryptjs");
 
 const Users = require("./auth-model");
 
 router.post("/register", (req, res) => {
   const user = req.body;
+  const hash = bcrypt.hashSync(user.password, 10);
+  user.password = hash;
+  console.log(user.password);
 
   Users.add(user)
     .then(user => {
@@ -17,12 +21,12 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  const { username } = req.body;
+  const { username, password } = req.body;
 
   Users.findBy({ username })
     .first()
     .then(user => {
-      if (user) {
+      if (user && bcrypt.compareSync(password, user.password)) {
         res.status(200).json({ message: "Welcome" });
       } else {
         res.status(401).json({ message: "Nice try." });

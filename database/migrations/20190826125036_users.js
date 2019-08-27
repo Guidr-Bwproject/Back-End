@@ -20,16 +20,15 @@ exports.up = function(knex) {
     })
     .createTable("trips", tbl => {
       tbl.increments();
-      tbl.string("title", 255);
-      tbl.string("description", 4000);
+      tbl.string("title", 255).notNullable();
+      tbl.string("description", 4000).notNullable();
       tbl
         .boolean("professional")
         .defaultTo(false)
         .notNullable();
-      tbl.string("time");
-      tbl.string("date");
+      tbl.string("duration", 255);
+      tbl.string("date", 255);
       tbl.string("location", 255);
-      tbl.integer("price");
       tbl.string("image");
       tbl
         .integer("user_id")

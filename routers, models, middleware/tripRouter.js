@@ -1,9 +1,8 @@
 const router = require("express").Router();
 
 const Model = require("./model");
-const authenticate = require("./authMiddleware");
 
-// Gets all trips
+// =================GET ALL TRIPS=================
 router.get("/", (req, res) => {
   Model.getTrips()
     .then(trips => {
@@ -16,7 +15,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// Gets trip by ID
+// =================GET TRIP BY ID=================
 router.get("/:id", (req, res) => {
   const { id } = req.params;
 
@@ -37,8 +36,8 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// Adds new trip =====EXTRA=====
-router.post("/", authenticate, (req, res) => {
+// =================ADD TRIP=================
+router.post("/", (req, res) => {
   const trip = req.body;
 
   Model.addTrip(trip)
@@ -53,8 +52,8 @@ router.post("/", authenticate, (req, res) => {
     });
 });
 
-// edit trip
-router.put("/:id", authenticate, (req, res) => {
+// =================EDIT TRIP=================
+router.put("/:id", (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
@@ -75,8 +74,8 @@ router.put("/:id", authenticate, (req, res) => {
     });
 });
 
-// delete trip
-router.delete("/:id", authenticate, (req, res) => {
+// =================DELETE TRIP=================
+router.delete("/:id", (req, res) => {
   const { id } = req.params;
 
   Model.removeTrip(id)

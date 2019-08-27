@@ -20,7 +20,11 @@ server.use("/api/user", userRouter);
 
 module.exports = server;
 
-// TO DO/QUESTIONS:
+// QUESTIONS:
+// do I need findTripById AND findUserById in model.js?
+
+// TO DO:
 // add comments
 // change migrations file name
-// do I need findTripById AND findUserById in model.js?
+// check all JSON messages
+// check error handling

@@ -6,7 +6,8 @@ module.exports = {
   getTrips,
   addTrip,
   findTripById,
-  updateTrips
+  updateTrip,
+  removeTrip
 };
 
 // ========== USERS ==========
@@ -49,10 +50,16 @@ function addTrip(trip) {
     });
 }
 
-function updateTrips(changes, id) {
+function updateTrip(changes, id) {
   return db("trips")
     .where({ id: id })
     .update(changes);
+}
+
+function removeTrip(id) {
+  return db("trips")
+    .where({ id: id })
+    .del();
 }
 
 // function getUserTrips(id) {

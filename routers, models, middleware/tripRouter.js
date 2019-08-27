@@ -60,8 +60,7 @@ router.put("/:id", (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
-  Model.findTripById(id)
-    .update(changes, id)
+  Model.updateTrip(changes, id)
     .then(trip => {
       if (trip) {
         res.status(200).json(trip);
@@ -74,12 +73,28 @@ router.put("/:id", (req, res) => {
     .catch(error => {
       res
         .status(500)
-        .json({ message: "The trip information could not be modified." });
+        .json({ message: "There was an error modifying the trip." });
     });
 });
 
 // delete trip
-router.delete("/trips/:id", (req, res) => {});
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+
+  Model.removeTrip(id)
+    .then(trip => {
+      if (trip) {
+        res.status(200).json(trip);
+      } else {
+        res
+          .status(404)
+          .json({ message: "The trip with the specified ID does not exist." });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({ error: "There was an error deleting the trip." });
+    });
+});
 
 module.exports = router;
 

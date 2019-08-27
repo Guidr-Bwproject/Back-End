@@ -6,8 +6,7 @@ exports.up = function(knex) {
       tbl.string("title", 255);
       tbl.string("tagline", 255);
       tbl.integer("age");
-      // tbl.timestamp("created_at");
-      // not sure how to implement
+      tbl.string("time_as_guide");
       tbl
         .string("username", 255)
         .unique()

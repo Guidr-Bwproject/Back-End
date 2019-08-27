@@ -3,9 +3,9 @@ exports.up = function(knex) {
     .createTable("users", tbl => {
       // check data
       tbl.increments();
-      tbl.string("title", 255).notNullable();
-      tbl.string("tagline", 255).notNullable();
-      tbl.integer("age").notNullable();
+      tbl.string("title", 255);
+      tbl.string("tagline", 255);
+      tbl.integer("age");
       // tbl.timestamp("created_at");
       // not sure how to implement
       tbl

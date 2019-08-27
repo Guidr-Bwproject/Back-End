@@ -97,12 +97,21 @@ module.exports = router;
 
 // dummy data
 // {
-//     "title": "a trip",
-//     "description": "a description",
-//     "professional": false,
-//     "time": "a time",
-//     "date": "a date",
-//     "location": "a location",
-//     "price": "a price",
-//     "image": "an image"
+//     "title": "a trip", (string, max 255)
+//     "description": "a description", (string, max 4000char)
+//     "professional": false, (boolean, defaults to false)
+//     "duration": "3 months", (string, max 255char)
+//     "date": "a date", (string, max 255char)
+//     "location": "a location", (string, max 255char)
+//     "image": "an image" (string)
+// }
+
+// {
+//   "title": "a trip",
+//   "description": "a description",
+//   "professional": false,
+//   "duration": "3 months",
+//   "date": "a date",
+//   "location": "a location",
+//   "image": "an image"
 // }

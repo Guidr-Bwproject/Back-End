@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const Model = require("./model");
+const secret = require("../secret");
 
 router.post("/register", (req, res) => {
   const user = req.body;
@@ -47,9 +48,6 @@ function getJwt(user) {
   };
   const options = {
     expiresIn: "8h"
-  };
-  const secret = {
-    jwtSecret: process.env.JWT_SECRET || "secret"
   };
 
   return jwt.sign(payload, secret.jwtSecret, options);

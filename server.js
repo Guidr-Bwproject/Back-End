@@ -4,7 +4,7 @@ const helmet = require("helmet");
 
 const router = require("./routers, models, middleware/router");
 const authRouter = require("./routers, models, middleware/authRouter");
-const tripsRouter = require("./routers, models, middleware/tripsRouter");
+const tripRouter = require("./routers, models, middleware/tripRouter");
 
 const server = express();
 
@@ -14,6 +14,21 @@ server.use(express.json());
 
 server.use("/api", router);
 server.use("/api/auth", authRouter);
-server.use("/api/trips", tripsRouter);
+server.use("/api/trips", tripRouter);
+
+// TEST
+router.get("/", (req, res) => {
+  res.status(200).json({ server: "running" });
+});
 
 module.exports = server;
+
+// QUESTIONS:
+// are my models okay? do I need findTripById AND findUserById in model.js?
+// where am I supposed to put the authentication middleware? I put them in the last 3 trip routers but it feels wrong.
+
+// TO DO:
+// add comments
+// change migrations file name
+// check all JSON messages
+// check error handling

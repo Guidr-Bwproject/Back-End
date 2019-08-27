@@ -20,42 +20,27 @@ exports.up = function(knex) {
     })
     .createTable("trips", tbl => {
       tbl.increments();
-      tbl.string("title", 255);
-      tbl.string("description", 4000);
+      tbl.string("title", 255).notNullable();
+      tbl.string("description", 4000).notNullable();
       tbl
         .boolean("professional")
         .defaultTo(false)
         .notNullable();
-      tbl.string("time");
-      tbl.string("date");
+      tbl.string("duration", 255);
+      tbl.string("date", 255);
       tbl.string("location", 255);
-      tbl.integer("price");
       tbl.string("image");
-    })
-    .createTable("user_trips", tbl => {
-      tbl.increments();
       tbl
         .integer("user_id")
         .unsigned()
         .notNullable()
         .references("id")
         .inTable("users")
-        .onDelete("RESTRICT") // check
-        .onUpdate("CASCADE");
-      tbl
-        .integer("trip_id")
-        .unsigned()
-        .notNullable()
-        .references("id")
-        .inTable("trips")
-        .onDelete("RESTRICT") // check
+        .onDelete("RESTRICT")
         .onUpdate("CASCADE");
     });
 };
 
 exports.down = function(knex) {
-  return knex.schema
-    .dropTableIfExists("user_trips")
-    .dropTableIfExists("trips")
-    .dropTableIfExists("users");
+  return knex.schema.dropTableIfExists("trips").dropTableIfExists("users");
 };

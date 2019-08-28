@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const Model = require("./model");
-const authenticate = require("./routers, models, middleware/authMiddleware");
+const authenticate = require("./authMiddleware");
 
 // =================GET ALL TRIPS=================
 router.get("/", (req, res) => {

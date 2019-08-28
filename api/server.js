@@ -2,8 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 
-const authRouter = require("./routers, models, middleware/authRouter");
-const tripRouter = require("./routers, models, middleware/tripRouter");
+const authRouter = require("./endpoints/auth/authRouter");
+const tripRouter = require("./endpoints/trip/tripRouter");
 
 const server = express();
 

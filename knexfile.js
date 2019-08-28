@@ -13,7 +13,8 @@ module.exports = {
     },
     pool: {
       afterCreate: (conn, done) => {
-        conn.run("PRAGMA foreign_keys = ON", done); // turns on the foreign key enforcement
+        // turns on the foreign key enforcement
+        conn.run("PRAGMA foreign_keys = ON", done);
       }
     }
   }

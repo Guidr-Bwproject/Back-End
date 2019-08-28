@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const tripModel = require("./tripModel");
-const authenticate = require("./authMiddleware");
+const authenticate = require("../auth/authMiddleware");
 
 // ================= GET ALL TRIPS =================
 router.get("/", (req, res) => {
@@ -49,7 +49,6 @@ router.post("/", authenticate, (req, res) => {
       res.status(201).json(trip);
     })
     .catch(error => {
-      console.log(error);
       res
         .status(500)
         .json({ message: "There was an error adding the new trip." });

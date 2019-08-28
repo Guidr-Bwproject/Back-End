@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const Model = require("./model");
 const secret = require("../secret");
 
+// ================= REGISTER USER =================
 router.post("/register", (req, res) => {
   const user = req.body;
   const hash = bcrypt.hashSync(user.password, 10);
@@ -23,6 +24,7 @@ router.post("/register", (req, res) => {
     });
 });
 
+// ================= LOGIN USER =================
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -41,6 +43,7 @@ router.post("/login", (req, res) => {
     });
 });
 
+// ================= JWT =================
 function getJwt(user) {
   const payload = {
     subject: user.id,
@@ -55,14 +58,3 @@ function getJwt(user) {
 }
 
 module.exports = router;
-
-// dummy data
-// {
-//   "title": "a title",
-//   "tagline": "a tagline",
-//   "age": 2,
-//   "time_as_guide": "8 years",
-//   "username": "a username",
-//   "password": "a password",
-//   "email": "an email"
-// }

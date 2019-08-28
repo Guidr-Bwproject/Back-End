@@ -3,7 +3,7 @@ const router = require("express").Router();
 const Model = require("./model");
 const authenticate = require("./authMiddleware");
 
-// =================GET ALL TRIPS=================
+// ================= GET ALL TRIPS =================
 router.get("/", (req, res) => {
   Model.getTrips()
     .then(trips => {
@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// =================GET TRIP BY ID=================
+// ================= GET TRIP BY ID =================
 router.get("/:id", (req, res) => {
   const { id } = req.params;
 
@@ -37,7 +37,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// =================ADD TRIP=================
+// ================= ADD TRIP =================
 router.post("/", authenticate, (req, res) => {
   const trip = req.body;
 
@@ -53,7 +53,7 @@ router.post("/", authenticate, (req, res) => {
     });
 });
 
-// =================EDIT TRIP=================
+// ================= EDIT TRIP =================
 router.put("/:id", authenticate, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
@@ -75,7 +75,7 @@ router.put("/:id", authenticate, (req, res) => {
     });
 });
 
-// =================DELETE TRIP=================
+// ================= DELETE TRIP =================
 router.delete("/:id", authenticate, (req, res) => {
   const { id } = req.params;
 
@@ -95,15 +95,3 @@ router.delete("/:id", authenticate, (req, res) => {
 });
 
 module.exports = router;
-
-// dummy data
-// {
-//   "title": "a trip",
-//   "description": "a description",
-//   "professional": false,
-//   "duration": "3 months",
-//   "date": "a date",
-//   "location": "a location",
-//   "image": "an image",
-//   "user_id": 1
-// }

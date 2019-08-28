@@ -22,6 +22,29 @@ server.get("/", (req, res) => {
 
 module.exports = server;
 
+// ================= USER TEST DATA =================
+// {
+//   "title": "a title",
+//   "tagline": "a tagline",
+//   "age": 2,
+//   "time_as_guide": "8 years",
+//   "username": "a username",
+//   "password": "a password",
+//   "email": "an email"
+// }
+
+// ================= TRIP TEST DATA =================
+// {
+//   "title": "a trip",
+//   "description": "a description",
+//   "professional": false,
+//   "duration": "3 months",
+//   "date": "a date",
+//   "location": "a location",
+//   "image": "an image",
+//   "user_id": 1
+// }
+
 // QUESTIONS:
 // are my models okay? do I need findTripById AND findUserById in model.js?
 // where am I supposed to put the authentication middleware? I put them in the last 3 trip routers but it feels wrong.
@@ -34,3 +57,4 @@ module.exports = server;
 // change migrations file name
 // check all JSON messages
 // check error handling
+// possibly change update and delete models

@@ -10,7 +10,7 @@ module.exports = {
   removeTrip
 };
 
-// ========== USERS ==========
+// ================= USERS =================
 function findUserBy(filter) {
   return db("users").where(filter);
 }
@@ -30,15 +30,15 @@ function addUser(user) {
     });
 }
 
-// ========== TRIPS ==========
+// ================= TRIPS =================
+function getTrips() {
+  return db("trips");
+}
+
 function findTripById(id) {
   return db("trips")
     .where({ id })
     .first();
-}
-
-function getTrips() {
-  return db("trips");
 }
 
 function addTrip(trip) {
@@ -52,16 +52,12 @@ function addTrip(trip) {
 
 function updateTrip(changes, id) {
   return db("trips")
-    .where({ id: id })
+    .where({ id })
     .update(changes);
 }
 
 function removeTrip(id) {
   return db("trips")
-    .where({ id: id })
+    .where({ id })
     .del();
 }
-
-// function getUserTrips(id) {
-//   return db('trips as t').innerJoin('users as u', )
-// }

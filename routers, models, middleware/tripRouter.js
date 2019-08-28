@@ -1,11 +1,12 @@
 const router = require("express").Router();
 
-const Model = require("./model");
+const tripModel = require("./tripModel");
 const authenticate = require("./authMiddleware");
 
 // ================= GET ALL TRIPS =================
 router.get("/", (req, res) => {
-  Model.getTrips()
+  tripModel
+    .getTrips()
     .then(trips => {
       res.status(200).json(trips);
     })
@@ -20,7 +21,8 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   const { id } = req.params;
 
-  Model.findTripById(id)
+  tripModel
+    .findTripById(id)
     .then(trip => {
       if (trip) {
         res.status(200).json(trip);
@@ -41,7 +43,8 @@ router.get("/:id", (req, res) => {
 router.post("/", authenticate, (req, res) => {
   const trip = req.body;
 
-  Model.addTrip(trip)
+  tripModel
+    .addTrip(trip)
     .then(trip => {
       res.status(201).json(trip);
     })
@@ -58,7 +61,8 @@ router.put("/:id", authenticate, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
-  Model.updateTrip(changes, id)
+  tripModel
+    .updateTrip(changes, id)
     .then(trip => {
       if (trip) {
         res.status(200).json(trip);
@@ -79,7 +83,8 @@ router.put("/:id", authenticate, (req, res) => {
 router.delete("/:id", authenticate, (req, res) => {
   const { id } = req.params;
 
-  Model.removeTrip(id)
+  tripModel
+    .removeTrip(id)
     .then(trip => {
       if (trip) {
         res.status(200).json(trip);

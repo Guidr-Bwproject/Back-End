@@ -1,10 +1,8 @@
-// Update with your config settings.
-
 module.exports = {
   development: {
     client: "sqlite3",
     connection: {
-      filename: "./database/users.sqlite3"
+      filename: "./database/database.sqlite3"
     },
     useNullAsDefault: true,
     migrations: {
@@ -15,7 +13,8 @@ module.exports = {
     },
     pool: {
       afterCreate: (conn, done) => {
-        conn.run("PRAGMA foreign_keys = ON", done); // turns on the foreign key enforcement
+        // turns on the foreign key enforcement
+        conn.run("PRAGMA foreign_keys = ON", done);
       }
     }
   }

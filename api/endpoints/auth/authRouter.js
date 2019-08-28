@@ -2,16 +2,18 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const Model = require("./model");
-const secret = require("../secret");
+const authModel = require("./authModel");
+const secret = require("../../../secret");
 
+// ================= REGISTER USER =================
 router.post("/register", (req, res) => {
   const user = req.body;
   const hash = bcrypt.hashSync(user.password, 10);
   user.password = hash;
   console.log(user.password);
 
-  Model.addUser(user)
+  authModel
+    .addUser(user)
     .then(user => {
       const token = getJwt(user);
       res.status(201).json({ message: "Welcome, here is your JWT:", token });
@@ -23,10 +25,12 @@ router.post("/register", (req, res) => {
     });
 });
 
+// ================= LOGIN USER =================
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
 
-  Model.findUserBy({ username })
+  authModel
+    .findUserBy({ username })
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
@@ -41,6 +45,7 @@ router.post("/login", (req, res) => {
     });
 });
 
+// ================= JWT =================
 function getJwt(user) {
   const payload = {
     subject: user.id,
@@ -55,14 +60,3 @@ function getJwt(user) {
 }
 
 module.exports = router;
-
-// dummy data
-// {
-//   "title": "a title",
-//   "tagline": "a tagline",
-//   "age": 2,
-//   "time_as_guide": "8 years",
-//   "username": "a username",
-//   "password": "a password",
-//   "email": "an email"
-// }

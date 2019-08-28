@@ -1,11 +1,12 @@
 const router = require("express").Router();
 
-const Model = require("./model");
-const authenticate = require("./authMiddleware");
+const tripModel = require("./tripModel");
+const authenticate = require("../auth/authMiddleware");
 
-// =================GET ALL TRIPS=================
+// ================= GET ALL TRIPS =================
 router.get("/", (req, res) => {
-  Model.getTrips()
+  tripModel
+    .getTrips()
     .then(trips => {
       res.status(200).json(trips);
     })
@@ -16,11 +17,12 @@ router.get("/", (req, res) => {
     });
 });
 
-// =================GET TRIP BY ID=================
+// ================= GET TRIP BY ID =================
 router.get("/:id", (req, res) => {
   const { id } = req.params;
 
-  Model.findTripById(id)
+  tripModel
+    .findTripById(id)
     .then(trip => {
       if (trip) {
         res.status(200).json(trip);
@@ -37,28 +39,29 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// =================ADD TRIP=================
+// ================= ADD TRIP =================
 router.post("/", authenticate, (req, res) => {
   const trip = req.body;
 
-  Model.addTrip(trip)
+  tripModel
+    .addTrip(trip)
     .then(trip => {
       res.status(201).json(trip);
     })
     .catch(error => {
-      console.log(error);
       res
         .status(500)
         .json({ message: "There was an error adding the new trip." });
     });
 });
 
-// =================EDIT TRIP=================
+// ================= EDIT TRIP =================
 router.put("/:id", authenticate, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
-  Model.updateTrip(changes, id)
+  tripModel
+    .updateTrip(changes, id)
     .then(trip => {
       if (trip) {
         res.status(200).json(trip);
@@ -75,11 +78,12 @@ router.put("/:id", authenticate, (req, res) => {
     });
 });
 
-// =================DELETE TRIP=================
+// ================= DELETE TRIP =================
 router.delete("/:id", authenticate, (req, res) => {
   const { id } = req.params;
 
-  Model.removeTrip(id)
+  tripModel
+    .removeTrip(id)
     .then(trip => {
       if (trip) {
         res.status(200).json(trip);
@@ -95,15 +99,3 @@ router.delete("/:id", authenticate, (req, res) => {
 });
 
 module.exports = router;
-
-// dummy data
-// {
-//   "title": "a trip",
-//   "description": "a description",
-//   "professional": false,
-//   "duration": "3 months",
-//   "date": "a date",
-//   "location": "a location",
-//   "image": "an image",
-//   "user_id": 1
-// }

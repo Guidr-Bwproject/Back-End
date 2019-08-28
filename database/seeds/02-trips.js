@@ -9,7 +9,8 @@ exports.seed = function(knex) {
       duration: "5 days",
       date: "2/12/19",
       location: "Agra, India",
-      image: "https://unsplash.com/photos/mNFlngSAQUg",
+      image:
+        "https://images.unsplash.com/photo-1506462945848-ac8ea6f609cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80",
       user_id: 1
     },
     {
@@ -20,7 +21,8 @@ exports.seed = function(knex) {
       duration: "2 days",
       date: "4/16/19",
       location: "Giza, Egypt",
-      image: "https://unsplash.com/photos/QtuCQC6k_uE",
+      image:
+        "https://images.unsplash.com/photo-1566288623500-66fdb0f40fa6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80",
       user_id: 1
     },
     {
@@ -31,7 +33,8 @@ exports.seed = function(knex) {
       duration: "8 hours",
       date: "7/11/19",
       location: "Yosemite National Park, California",
-      image: "https://unsplash.com/photos/HrUwIKrmPm0",
+      image:
+        "https://images.unsplash.com/photo-1483400900607-becbece13e85?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
       user_id: 2
     },
     {
@@ -42,7 +45,8 @@ exports.seed = function(knex) {
       duration: "4 hours",
       date: "6/15/19",
       location: "Yellowstone National Park, Wyoming",
-      image: "https://unsplash.com/photos/oN3U95O4cag",
+      image:
+        "https://images.unsplash.com/photo-1529439322271-42931c09bce1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
       user_id: 2
     },
     {
@@ -53,7 +57,8 @@ exports.seed = function(knex) {
       duration: "1 day",
       date: "3/15/19",
       location: "Glacier National Park, Montana",
-      image: "https://unsplash.com/photos/THsw2pd2gX0",
+      image:
+        "https://images.unsplash.com/photo-1508166466920-f65aa51f727c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
       user_id: 3
     },
     {
@@ -64,7 +69,8 @@ exports.seed = function(knex) {
       duration: "10 hours",
       date: "8/10/19",
       location: "Honolulu, Hawaii",
-      image: "https://unsplash.com/photos/7yKgU0xemJw",
+      image:
+        "https://images.unsplash.com/photo-1514313887299-224ccb4dd111?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
       user_id: 3
     }
   ]);

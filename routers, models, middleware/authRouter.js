@@ -13,7 +13,8 @@ router.post("/register", (req, res) => {
 
   Model.addUser(user)
     .then(user => {
-      res.status(201).json(user);
+      const token = getJwt(user);
+      res.status(201).json({ message: "Welcome, here is your JWT:", token });
     })
     .catch(error => {
       res
@@ -60,7 +61,8 @@ module.exports = router;
 //   "title": "a title",
 //   "tagline": "a tagline",
 //   "age": 2,
-//   "username": "a 2212username",
+//   "time_as_guide": "8 years",
+//   "username": "a username",
 //   "password": "a password",
-//   "email": "an 2122email"
+//   "email": "an email"
 // }

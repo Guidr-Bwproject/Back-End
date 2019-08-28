@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const Model = require("./model");
+const authenticate = require("./authMiddleware");
 
 // =================GET ALL TRIPS=================
 router.get("/", (req, res) => {
@@ -37,7 +38,7 @@ router.get("/:id", (req, res) => {
 });
 
 // =================ADD TRIP=================
-router.post("/", (req, res) => {
+router.post("/", authenticate, (req, res) => {
   const trip = req.body;
 
   Model.addTrip(trip)
@@ -53,7 +54,7 @@ router.post("/", (req, res) => {
 });
 
 // =================EDIT TRIP=================
-router.put("/:id", (req, res) => {
+router.put("/:id", authenticate, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
@@ -75,7 +76,7 @@ router.put("/:id", (req, res) => {
 });
 
 // =================DELETE TRIP=================
-router.delete("/:id", (req, res) => {
+router.delete("/:id", authenticate, (req, res) => {
   const { id } = req.params;
 
   Model.removeTrip(id)
@@ -97,21 +98,12 @@ module.exports = router;
 
 // dummy data
 // {
-//     "title": "a trip", (string, max 255)
-//     "description": "a description", (string, max 4000char)
-//     "professional": false, (boolean, defaults to false)
-//     "duration": "3 months", (string, max 255char)
-//     "date": "a date", (string, max 255char)
-//     "location": "a location", (string, max 255char)
-//     "image": "an image" (string)
-// }
-
-// {
 //   "title": "a trip",
 //   "description": "a description",
 //   "professional": false,
 //   "duration": "3 months",
 //   "date": "a date",
 //   "location": "a location",
-//   "image": "an image"
+//   "image": "an image",
+//   "user_id": 1
 // }

@@ -6,7 +6,7 @@ exports.up = function(knex) {
       tbl.string("title", 255);
       tbl.string("tagline", 255);
       tbl.integer("age");
-      tbl.string("time_as_guide");
+      tbl.string("time_as_guide").notNullable();
       tbl
         .string("username", 255)
         .unique()

@@ -4,7 +4,7 @@ const helmet = require("helmet");
 
 const authRouter = require("./routers, models, middleware/authRouter");
 const tripRouter = require("./routers, models, middleware/tripRouter");
-const authenticate = require("./routers, models, middleware/authMiddleware");
+// const authenticate = require("./routers, models, middleware/authMiddleware");
 
 const server = express();
 
@@ -13,7 +13,7 @@ server.use(cors());
 server.use(express.json());
 
 server.use("/api/auth", authRouter);
-server.use("/api/trips", authenticate, tripRouter);
+server.use("/api/trips", tripRouter);
 
 // TEST
 server.get("/", (req, res) => {

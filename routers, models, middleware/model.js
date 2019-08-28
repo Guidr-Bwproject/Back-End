@@ -38,7 +38,7 @@ function findTripById(id) {
 }
 
 function getTrips() {
-  return db("trips").select("id", "title", "description");
+  return db("trips");
 }
 
 function addTrip(trip) {

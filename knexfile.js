@@ -10,12 +10,12 @@ module.exports = {
     },
     seeds: {
       directory: "./database/seeds"
-    },
-    pool: {
-      afterCreate: (conn, done) => {
-        // turns on the foreign key enforcement
-        conn.run("PRAGMA foreign_keys = ON", done);
-      }
     }
+    // pool: {
+    //   afterCreate: (conn, done) => {
+    //     // turns on the foreign key enforcement
+    //     conn.run("PRAGMA foreign_keys = ON", done);
+    //   }
+    // }
   }
 };

@@ -1,5 +1,7 @@
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
+  // return knex("trips")
+  //   .truncate()
+  //   .then(function() {
   return knex("trips").insert([
     {
       title: "Taj Mahal",
@@ -74,4 +76,5 @@ exports.seed = function(knex) {
       user_id: 3
     }
   ]);
+  // });
 };

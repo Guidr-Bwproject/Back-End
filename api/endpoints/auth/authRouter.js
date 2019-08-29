@@ -10,7 +10,6 @@ router.post("/register", (req, res) => {
   const user = req.body;
   const hash = bcrypt.hashSync(user.password, 10);
   user.password = hash;
-  console.log(user.password);
 
   authModel
     .addUser(user)
@@ -35,7 +34,9 @@ router.post("/login", (req, res) => {
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = getJwt(user);
-        res.status(200).json({ message: "Welcome, here is your JWT:", token });
+        res
+          .status(200)
+          .json({ message: "Welcome, here is your JWT:", token, id });
       } else {
         res.status(401).json({ message: "Nice try." });
       }

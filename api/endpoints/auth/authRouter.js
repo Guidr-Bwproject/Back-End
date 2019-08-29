@@ -27,7 +27,6 @@ router.post("/register", (req, res) => {
 // ================= LOGIN USER =================
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
-  const id = req.params.id;
 
   authModel
     .findUserBy({ username })
@@ -37,7 +36,7 @@ router.post("/login", (req, res) => {
         const token = getJwt(user);
         res
           .status(200)
-          .json({ message: "Welcome, here is your JWT:", token, id });
+          .json({ message: "Welcome, here is your JWT:", token, user });
       } else {
         res.status(401).json({ message: "Nice try." });
       }

@@ -27,6 +27,7 @@ router.post("/register", (req, res) => {
 // ================= LOGIN USER =================
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
+  const id = req.params.id;
 
   authModel
     .findUserBy({ username })

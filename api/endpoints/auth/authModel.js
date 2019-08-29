@@ -6,6 +6,7 @@ module.exports = {
 };
 
 function findUserBy(filter) {
+  console.log(filter);
   return db("users").where(filter);
 }
 
@@ -16,6 +17,7 @@ function findUserById(id) {
 }
 
 function addUser(user) {
+  console.log("hello");
   return db("users")
     .insert(user)
     .then(ids => {

@@ -34,8 +34,8 @@ router.get("/:id", (req, res) => {
     })
     .catch(error => {
       res
-        .status(404)
-        .json({ message: "The trip with the specified ID does not exist." });
+        .status(500)
+        .json({ message: "The trips information could not be retrieved." });
     });
 });
 

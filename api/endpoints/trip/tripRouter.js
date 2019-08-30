@@ -43,25 +43,16 @@ router.get("/:id", (req, res) => {
 router.post("/", authenticate, (req, res) => {
   const trip = req.body;
 
-  if (!trip.title || !trip.description || !trip.professional) {
-    res
-      .status(400)
-      .json({
-        message:
-          "Please provide the trip title, description, and whether it is private or professional."
-      });
-  } else {
-    tripModel
-      .addTrip(trip)
-      .then(trip => {
-        res.status(201).json(trip);
-      })
-      .catch(error => {
-        res
-          .status(500)
-          .json({ message: "There was an error adding the new trip." });
-      });
-  }
+  tripModel
+    .addTrip(trip)
+    .then(trip => {
+      res.status(201).json(trip);
+    })
+    .catch(error => {
+      res
+        .status(500)
+        .json({ message: "There was an error adding the new trip." });
+    });
 });
 
 // ================= EDIT TRIP =================

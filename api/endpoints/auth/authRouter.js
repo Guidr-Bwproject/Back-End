@@ -20,7 +20,7 @@ router.post("/register", (req, res) => {
     .catch(error => {
       res
         .status(500)
-        .json({ message: "There was an error registering the new user. " });
+        .json({ message: "There was an error registering the new user." });
     });
 });
 
@@ -38,11 +38,13 @@ router.post("/login", (req, res) => {
           .status(200)
           .json({ message: "Welcome, here is your JWT:", token, user });
       } else {
-        res.status(401).json({ message: "Nice try." });
+        res.status(401).json({ message: "Incorrect username or password." });
       }
     })
     .catch(error => {
-      res.status(500).json({ message: "There was an error logging in." });
+      res
+        .status(500)
+        .json({ message: "There was an error logging in the user." });
     });
 });
 
